@@ -10,31 +10,25 @@ loom {
 }
 
 repositories {
-    maven("https://maven.parchmentmc.org") // Parchment Mappings
-    maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1") // DevAuth
-    maven("https://nexus.resourcefulbees.com/repository/maven-public/") // Olympus
-    maven("https://maven.terraformersmc.com/releases/") // Mod Menu
+    maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    maven("https://maven.teamresourceful.com/repository/maven-public/")
+    maven("https://maven.terraformersmc.com/releases/")
 }
 
 dependencies {
-    // To change the versions see the gradle.properties file
     minecraft(libs.minecraft)
-    mappings(loom.layered {
-        officialMojangMappings()
-        parchment(libs.parchment)
-    })
-    modImplementation(libs.loader.fabric)
-    modImplementation(libs.loader.kotlin)
 
-    modImplementation(libs.fapi)
+    implementation(libs.loader.fabric)
+    implementation(libs.loader.kotlin)
+    implementation(libs.fapi)
 
-    modImplementation(libs.resourcefullib)
+    implementation(libs.resourcefullib)
     include(libs.resourcefullib)
-    modImplementation(libs.olympus)
-    modImplementation(libs.modmenu)
+    implementation(libs.olympus)
     include(libs.olympus)
+    implementation(libs.modmenu)
 
-    modRuntimeOnly(libs.devauth)
+    runtimeOnly(libs.devauth)
 }
 
 tasks.processResources {
@@ -45,16 +39,21 @@ tasks.processResources {
     }
 }
 
+val targetJavaVersion = 25
+
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
     options.release.set(targetJavaVersion)
+}
+
+kotlin {
+    jvmToolchain(targetJavaVersion)
 }
 
 base {
     archivesName.set(project.property("archives_base_name") as String)
 }
 
-val targetJavaVersion = 21
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     withSourcesJar()
