@@ -20,6 +20,6 @@ object McClient {
     }
 
     fun setScreen(screen: Screen?) {
-        self.setScreen(screen)
+        self.gui.setScreen(screen)
     }
 }
