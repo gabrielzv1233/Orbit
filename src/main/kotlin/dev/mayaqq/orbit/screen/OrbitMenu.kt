@@ -10,12 +10,9 @@ import earth.terrarium.olympus.client.components.buttons.Button
 import earth.terrarium.olympus.client.components.renderers.WidgetRenderers
 import earth.terrarium.olympus.client.ui.UIConstants
 import net.minecraft.client.gui.GuiGraphicsExtractor
-import net.minecraft.client.gui.render.TextureSetup
 import net.minecraft.client.input.KeyEvent
 import net.minecraft.client.renderer.RenderPipelines
-import net.minecraft.client.renderer.state.gui.BlitRenderState
 import net.minecraft.resources.Identifier
-import org.joml.Matrix3x2f
 import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.cos
@@ -59,31 +56,18 @@ class OrbitMenu : ControlsPassthroughScreen(Text.EMPTY) {
                                         if (!input.path.endsWith(".png")) append(".png")
                                     }
                                 )
-                                gr.pose().pushMatrix()
-                                gr.pose().translate(ctx.x + 12F, ctx.y + 12F)
-
-                                val tex = McClient.self.textureManager.getTexture(texture)
-                                gr.guiRenderState.addGuiElement(
-                                    BlitRenderState(
-                                        RenderPipelines.GUI_TEXTURED,
-                                        TextureSetup.singleTexture(
-                                            tex.textureView,
-                                            tex.sampler,
-                                        ),
-                                        Matrix3x2f(gr.pose()),
-                                        0,
-                                        0,
-                                        16,
-                                        16,
-                                        0f,
-                                        1f,
-                                        0f,
-                                        1f,
-                                        0xFFFFFFFFu.toInt(),
-                                        gr.scissorStack.peek(),
-                                    ),
+                                gr.blit(
+                                    RenderPipelines.GUI_TEXTURED,
+                                    texture,
+                                    ctx.x + 12,
+                                    ctx.y + 12,
+                                    0f,
+                                    0f,
+                                    16,
+                                    16,
+                                    16,
+                                    16
                                 )
-                                gr.pose().popMatrix()
                             }
                         }
                     }
