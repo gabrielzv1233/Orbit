@@ -5,7 +5,7 @@
 <a href="https://modrinth.com/mod/orbit-key">
     <img src="https://wsrv.nl/?url=https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/modrinth_vector.svg&w=100&h=100" alt="Modrinth">
 </a>
-<a href="https://github.com/MayaqqDev/Orbit/">
+<a href="https://github.com/gabrielzv1233/Orbit/">
     <img src="https://wsrv.nl/?url=https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/github_vector.svg&w=100&h=100" alt="Github">
 </a>
 <a href="https://discord.gg/hue">
